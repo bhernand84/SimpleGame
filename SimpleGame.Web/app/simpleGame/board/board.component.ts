@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Board } from '../../shared/models/board';
-import { Column } from '../../shared/models/column';
 
 @Component({
 	selector: 'connect4',

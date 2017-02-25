@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Space } from '../../shared/models/space';
-import { Connect4API } from '../../services/connect4API';
-import { Helpers } from '../../services/helpers';
 
 @Component({
 	selector: "space",
