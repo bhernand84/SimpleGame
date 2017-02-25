@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Board } from '../../shared/models/board';
 
 @Component({
-	selector: 'connect4',
+	selector: 'board',
 	template: `
 		<div class="board">
 			<h2>BOARD CONTAINER</h2>
-			<column (columnClickedEmitter)="onColumnClick($event)"></column>
+			<space (spaceClickedEmitter)="onSpaceClick($event)"></space>
 
 		</div>
 	`,
@@ -21,10 +21,10 @@ import { Board } from '../../shared/models/board';
 })
 export class BoardComponent {
 	@Input() board: Board;
-	@Output() columnClickedEmitter = new EventEmitter();
+	@Output() spaceClickedEmitter = new EventEmitter();
 
-	onColumnClick(column) {
+	onSpaceClick(space) {
 		//push the clicked space up to parent component
-		this.columnClickedEmitter.emit(column)
+		this.spaceClickedEmitter.emit(space)
 	}
 } 
