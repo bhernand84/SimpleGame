@@ -8,7 +8,7 @@ import { Game } from '../../shared/models/game';
 	template: `
 		<div class="game">
 			<h1>GAME CONTAINER</h1>
-			<connect4 (columnClickedEmitter)="onColumnClick($event)"></connect4>
+			<board (spaceClickedEmitter)="onSpaceClick($event)"></board>
 		</div>
 	`,
 	styles: [`
@@ -47,17 +47,17 @@ export class GameComponent {
 		this.setActivePlayer();
 	}
 
-	onColumnClick(columnClicked) {
-		if(columnClicked !== null) {
+	onSpaceClick(spaceClicked) {
+		if(spaceClicked !== null) {
 			console.log("active player is " + this.activePlayer);
 
 			//send space object up to app level for the API call
 			var objectForAPI = {
-				column: columnClicked,
+				column: spaceClicked,
 				playerId: this.activePlayer.id,
 				gameId: this.game.id
 			}
-			this.columnClickedEmitter.emit({columnId: columnClicked.id, playerId: this.activePlayer.id, gameId: this.game.id});
+			this.columnClickedEmitter.emit({columnId: spaceClicked.id, playerId: this.activePlayer.id, gameId: this.game.id});
 		}
 	}
 }

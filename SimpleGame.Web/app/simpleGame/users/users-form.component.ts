@@ -29,7 +29,7 @@ import { User } from '../../shared/models/user';
 				</div>
 
 				<div class="form-group" [ngClass]="{ 'has-error': password.invalid && password.touched }">
-					<input type="text" class="form-control" 
+					<input type="password" class="form-control" 
 					placeholder="password"
 					name="password" 
 					required
@@ -64,7 +64,7 @@ export class UserFormComponent{
 
 	onSubmit() {
 		this.userCreated.emit({ user: this.newUser });
-
+		console.log(this.newUser);
 		this.newUser = new User();
 		this.resetForm();
 	}
