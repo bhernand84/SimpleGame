@@ -17,17 +17,6 @@ import { User } from '../../shared/models/user';
 					<span class="help-block" *ngIf="name.touched && name.invalid">Name is Required.</span>
 				</div>
 
-				<div class="form-group" [ngClass]="{ 'has-error': username.invalid && username.touched }">
-					<input type="text" class="form-control" 
-					placeholder="Username"
-					name="username" 
-					required
-					[(ngModel)]="newUser.username"
-					#username="ngModel">
-
-					<span class="help-block" *ngIf="username.touched && username.invalid">Username is Required.</span>
-				</div>
-
 				<div class="form-group" [ngClass]="{ 'has-error': password.invalid && password.touched }">
 					<input type="password" class="form-control" 
 					placeholder="password"
