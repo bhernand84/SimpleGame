@@ -1,5 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { User } from '../../shared/models/user';
+
+class UserSignupForm {
+	name: string;
+	password: string;
+
+	constructor () {}
+}
 
 @Component({
 	selector: "user-form",
@@ -11,21 +17,10 @@ import { User } from '../../shared/models/user';
 					placeholder="Name" 
 					name="name" 
 					required
-					[(ngModel)]="newUser.name"
+					[(ngModel)]="newUserForm.name"
 					#name="ngModel">
 
 					<span class="help-block" *ngIf="name.touched && name.invalid">Name is Required.</span>
-				</div>
-
-				<div class="form-group" [ngClass]="{ 'has-error': password.invalid && password.touched }">
-					<input type="password" class="form-control" 
-					placeholder="password"
-					name="password" 
-					required
-					[(ngModel)]="newUser.password"
-					#password="ngModel">
-
-					<span class="help-block" *ngIf="password.touched && password.invalid">Password is Required.</span>
 				</div>
 
 				<button type="submit" class="btn btn.lg btn.block btn.primary"
@@ -45,16 +40,21 @@ import { User } from '../../shared/models/user';
 	`]
 })
 export class UserFormComponent{
-	@Output() userCreated = new EventEmitter();
+
+	@Output() userCreatedEmitter = new EventEmitter();
 
 
-	newUser: User = new User();
+	newUserForm: UserSignupForm = new UserSignupForm();
 	active: boolean = true;
 
 	onSubmit() {
-		this.userCreated.emit({ user: this.newUser });
-		console.log(this.newUser);
-		this.newUser = new User();
+		if(this.newUserForm.name !== ""){
+			this.userCreatedEmitter.emit( this.newUserForm.name );
+			this.active = false;
+			
+			return null;
+		}
+		this.newUserForm = new UserSignupForm();
 		this.resetForm();
 	}
 
