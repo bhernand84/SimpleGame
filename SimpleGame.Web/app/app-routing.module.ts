@@ -5,7 +5,6 @@ import { ListOfGamesComponent } from './simpleGame/listOfGames/listOfGames.compo
 import { UserFormComponent } from './simpleGame/users/users-form.component';
 
 const appRoutes: Routes = [
-    { path: 'simpleGame', component: GameComponent },
     { path: 'login', component: UserFormComponent },
     { path: 'listOfGames', component: ListOfGamesComponent },
     { path: '', redirectTo: 'login', pathMatch: 'full' },
