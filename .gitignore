@@ -16,4 +16,5 @@ Version.cs
 Version.h
 Version.cpp
 packages/﻿
-/packages
+/SimpleGame.Web/node_modules
+.DS_Store
