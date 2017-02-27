@@ -3,6 +3,7 @@ using Rhino.Mocks;
 using SimpleGame.Common.Entities;
 using SimpleGame.Data.Serializers;
 using SimpleGame.Domain.Models;
+using SimpleGame.Domain.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,6 +137,39 @@ namespace SimpleGame.Tests.UnitTests
             Assert.AreEqual(board.Rows, deserializedBoard.Rows);
             Assert.AreEqual(board.Columns[0].Spaces.First().Owner.ID, deserializedBoard.Columns[0].Spaces.First().Owner.ID);
             Assert.AreEqual(board.Columns[0].Spaces.First().Owner.Name, deserializedBoard.Columns[0].Spaces.First().Owner.Name);
+        }
+
+        [TestMethod]
+        public void Serializer_CanSaveGameSTate()
+        {
+            var state = new ActiveState()
+            {
+                Output = "test board",
+                PlayerOrder = new List<Player>() { new BasicPlayer() { ID = "3333", Name = "timmo" }, new BasicPlayer() { ID = "2222", Name = "timo" } }
+            };
+            var serializedState = SerializationHelper.Serialize(state);
+
+            Assert.IsTrue(serializedState .Contains("2222"));
+            Assert.IsTrue(serializedState .Contains("timmo"));
+            Assert.IsTrue(serializedState .Contains("3333"));
+            Assert.IsTrue(serializedState .Contains("timo"));
+            Assert.IsTrue(serializedState.Contains("test board"));
+        }
+        [TestMethod]
+        public void Serializer_CanLoadState()
+        {
+            var state = new ActiveState()
+            {
+                Output = "test board",
+                PlayerOrder = new List<Player>() { new BasicPlayer() { ID = "3333", Name = "timmo" }, new BasicPlayer() { ID = "2222", Name = "timo" } }
+            };
+            var serializedState = SerializationHelper.Serialize(state);
+
+            var deserializedState = SerializationHelper.Deserialize<State>(serializedState);
+
+            Assert.AreEqual(state.Output, deserializedState.Output);
+            Assert.IsTrue(deserializedState is ActiveState);
+            Assert.AreEqual(state.PlayerOrder.First().Name, ((ActiveState)deserializedState).PlayerOrder.First().Name);
         }
 
     }

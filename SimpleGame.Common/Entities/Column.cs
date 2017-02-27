@@ -11,5 +11,6 @@ namespace SimpleGame.Common.Entities
         IEnumerable<Space> Spaces { get; }
 
         void Add(Space space);
+        void Remove(Space space);
     }
 }

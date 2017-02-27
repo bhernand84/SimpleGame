@@ -50,9 +50,9 @@ namespace SimpleGame.Domain.Models
             GameState.Leave(this, player);
         }
 
-        public void Play(string gameid, string playerid, Space space)
+        public void Play(Player player, Space space, Position position)
         {
-            throw new NotImplementedException();
+            GameState.Play(this, player, space, position);
         }
 
         public BasicGame(Board board, PlayerContainer playerContainer, int maxSize)

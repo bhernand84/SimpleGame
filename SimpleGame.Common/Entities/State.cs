@@ -9,10 +9,10 @@ namespace SimpleGame.Common.Entities
 {
     public interface State
     {
-        GameStatus Status { get; set; }
+        GameStatus Status { get; }
         string Output { get; set; }
         void Init(Game game);
-        void Play(Game game, Player player, Space space);
+        void Play(Game game, Player player, Space space, Position position);
         void Join(Game game, Player player);
         void Leave(Game game, Player player);
     }

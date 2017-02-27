@@ -47,6 +47,7 @@
     <Compile Include="Entities\GameRepository.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerContainer.cs" />
+    <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Space.cs" />
     <Compile Include="Entities\State.cs" />
     <Compile Include="Enum\GameStatus.cs" />

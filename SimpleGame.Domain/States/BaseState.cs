@@ -14,14 +14,13 @@ namespace SimpleGame.Domain.States
     {
         public virtual GameStatus Status
         {
-            get;set;
+            get { return GameStatus.Starting; }
         }
         public virtual string Output
         {get;set;}
 
         public virtual void Init(Game game)
         {
-            Status = Common.Enum.GameStatus.Starting;
         }
 
         public virtual void Join(Game game, Player player)
@@ -34,7 +33,7 @@ namespace SimpleGame.Domain.States
             throw new InvalidOperationException(Messages.GameCannotLeaveMessage);
         }
 
-        public virtual void Play(Game game, Player player, Space space)
+        public virtual void Play(Game game, Player player, Space space, Position position)
         {
             throw new InvalidMoveException("Sorry you cannot play at this time!");
         }

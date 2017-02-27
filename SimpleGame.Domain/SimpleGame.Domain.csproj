@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\ActiveState.cs" />
     <Compile Include="States\BaseState.cs" />
+    <Compile Include="States\CompleteState.cs" />
     <Compile Include="States\SetupState.cs" />
   </ItemGroup>
   <ItemGroup>
