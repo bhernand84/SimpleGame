@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { ListOfGames } from '../../shared/models/listOfGames';
 
 @Component({
-    selector: 'list-of-games',
+    selector: 'listOfGames',
     template: `
-        <div class="list-of-games">
+        <div class="listOfGames">
             LIST OF GAMES GOES HERE
         </div>
     `,

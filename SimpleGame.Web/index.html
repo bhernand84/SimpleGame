@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <base href="/">
     <meta charset="UTF-8">
-    <title>Simple Game</title>
+    <title>My Angular 2 App</title>
     <!-- css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css">
     <style>
@@ -20,6 +19,11 @@
     <!-- load our angular app with systemjs -->
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="systemjs.config.js"></script>
+    <!-- Include SignalR (& jQuery since it requires it) -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/signalr/jquery.signalr.js"></script>
+
+    <!--<script src="~/signalr/hubs"></script> -->
     <script>
         System.import('app').catch(function(err) {
             console.error(err);
