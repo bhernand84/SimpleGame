@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="jumbotron">
+    <h1>Fire Incidents</h1>
+    <p>Watch fire incidents in real-time</p>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                <label for="location">Location</label>
+                <input type="text" id="location" value="Town Hall" />
+            </p>
+            <p><input type="button" id="report" value="Simulate Fire Incident" /></p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul style="list-style-type:none;" id="fires"></ul>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var hub = $.connection.gameHub;
+
+            $.connection.hub.logging = true;
+            $.connection.hub.url = 'http://simplegameweb.azurewebsites.net/signalr'
+            hub.client.update = function (game) {
+                console.log(game);
+            };
+
+            $.connection.hub.start({ withCredentials: false });
+        });
+    </script>
+}
