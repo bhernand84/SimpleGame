@@ -41,7 +41,8 @@ namespace SimpleGame.Web.Controllers
 
         public GameController(GameNotify notifier, GameRepository gameRepository)
         {
-
+            Notifier = notifier;
+            GameRepository = gameRepository;
         }
     }
 }

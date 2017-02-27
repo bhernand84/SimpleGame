@@ -1,4 +1,5 @@
-﻿using SimpleGame.Common.Entities;
+﻿using SimpleGame.Common.Constants;
+using SimpleGame.Common.Entities;
 using SimpleGame.Common.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,21 @@ namespace SimpleGame.Domain.Models
         public void Add(Space space)
         {
             if (maxSize == spaces.Count())
-                throw new InvalidMoveException();
+                throw new InvalidMoveException(Messages.ColumnIsFull);
             spaces.Add(space);
         }
-
+        public void Remove(Space space)
+        {
+            var currentSpace = spaces.FirstOrDefault(m => m.Id == space.Id);
+            if (currentSpace != null)
+            {
+                spaces.Remove(currentSpace);
+            }
+            else
+            {
+                throw new InvalidMoveException(Messages.SpaceDoesNotExist);
+            }
+        }
         public BasicColumn() : this(10) { }
 
         public BasicColumn(int size)

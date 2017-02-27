@@ -14,13 +14,13 @@ namespace SimpleGame.Common.Entities
         PlayerContainer Players { get; }
         State GameState { get; }
         string Output { get; }
-        Player ActivePlayer { get; }
+        Player ActivePlayer { get; set; }
         GameStatus GameStatus { get; }
         int MaxSize { get;}
         void SetState(State state);
         void Join(Player player);
         void Leave(Player player);
-        void Play(string gameid, string playerid, Space space);
+        void Play(Player player, Space space, Position position);
 
     }
 }

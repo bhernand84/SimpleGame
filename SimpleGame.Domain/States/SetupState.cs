@@ -5,18 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleGame.Common.Enum;
 
 namespace SimpleGame.Domain.States
 {
     public class SetupState : BaseState
     {
+        public override GameStatus Status
+        {
+            get
+            {
+                return GameStatus.Starting;
+            }
+        }
         public override string Output
         { get; set; }
-
-        public override void Init(Game game)
-        {
-            Status = Common.Enum.GameStatus.Starting;
-        }
 
         public override void Join(Game game, Player player)
         {

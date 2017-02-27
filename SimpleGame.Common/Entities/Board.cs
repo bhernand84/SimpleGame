@@ -12,8 +12,8 @@ namespace SimpleGame.Common.Entities
         IEnumerable<Space> OccupiedSpaces { get; }
         int Cols { get; }
         int Rows { get; set; }
-        void Add(Space space, int columm);
-        void Remove(Space space, int column);
+        void Add(Space space, Position position);
+        void Remove(Space space, Position position);
         void Init(int numberOfColumns);
     }
 }

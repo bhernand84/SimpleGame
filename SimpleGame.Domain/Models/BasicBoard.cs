@@ -21,15 +21,14 @@ namespace SimpleGame.Domain.Models
         public int Rows
         { get; set; }
 
-        public void Add(Space space, int column)
+        public void Add(Space space, Position position)
         {
-
-            Columns[column].Add(space);
+            Columns[position.Column].Add(space);
         }
 
-        public void Remove(Space space, int column)
+        public void Remove(Space space, Position position)
         {
-            throw new NotImplementedException();
+            Columns[position.Column].Remove(space);
         }
 
         public void Init(int numberOfColumns)

@@ -44,9 +44,23 @@ namespace SimpleGame.Tests.UnitTests
             Board myBoard = new BasicBoard();
             myBoard.Init(5);
             var space = spaceFactory.Get();
-            myBoard.Add(space, 1);
+            var position = new Position() { Column = 1 };
+            myBoard.Add(space, position);
 
             Assert.AreEqual(1, myBoard.OccupiedSpaces.Count());
+        }
+        [TestMethod]
+        public void BoardCanRemoveSpaces()
+        {
+            Board myBoard = new BasicBoard();
+            myBoard.Init(5);
+            var space = spaceFactory.Get();
+            var position = new Position() { Column = 1 };
+            myBoard.Add(space, position);
+
+            myBoard.Remove(space, position);
+
+            Assert.AreEqual(0, myBoard.OccupiedSpaces.Count());
         }
     }
 }
