@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SimpleGame.Common.Entities;
 using SimpleGame.Web.ServiceBus;
+using System.Web.Mvc; 
 
 namespace SimpleGame.Web.Controllers
 {
