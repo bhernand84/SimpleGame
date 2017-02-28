@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SimpleGame.Web.ServiceBus
 {
-    public class GameNotify
+    public class GameNotify 
     {
         public event EventHandler<Game> Game;
 

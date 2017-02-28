@@ -10,15 +10,14 @@ namespace SimpleGame.Web.Hubs
 {
     public class GameHub : Hub<IGameHub>
     {
-
         public GameHub(GameNotify notifier)
         {
             if (!notifier.IsRegistered)
             {
-                notifier.Game += (sender, game) => { UpdateGame(game); };
+                notifier.Game += (sender, game) => { Update(game); };
             }
         }
-        public void UpdateGame(Game game)
+        public void Update(Game game)
         {
             Clients.All.update(game);
         }
