@@ -84,6 +84,10 @@
       <Project>{231BDBD5-69BB-4201-B46A-E15E760450C1}</Project>
       <Name>SimpleGame.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimpleGame.Domain\SimpleGame.Domain.csproj">
+      <Project>{b123e4a6-f130-476d-938b-1aca49ea207c}</Project>
+      <Name>SimpleGame.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

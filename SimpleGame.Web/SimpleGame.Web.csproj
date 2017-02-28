@@ -47,6 +47,22 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac, Version=4.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.3.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.SignalR, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.SignalR.3.0.2\lib\net40\Autofac.Integration.SignalR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -376,6 +392,14 @@
     <ProjectReference Include="..\SimpleGame.Common\SimpleGame.Common.csproj">
       <Project>{231BDBD5-69BB-4201-B46A-E15E760450C1}</Project>
       <Name>SimpleGame.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleGame.Data\SimpleGame.Data.csproj">
+      <Project>{0ECD8497-2397-4F1F-B33A-C76AB6BD5351}</Project>
+      <Name>SimpleGame.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleGame.Domain\SimpleGame.Domain.csproj">
+      <Project>{b123e4a6-f130-476d-938b-1aca49ea207c}</Project>
+      <Name>SimpleGame.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

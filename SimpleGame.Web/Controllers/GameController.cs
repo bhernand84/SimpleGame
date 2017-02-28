@@ -39,6 +39,7 @@ namespace SimpleGame.Web.Controllers
             throw new NotImplementedException();
         }
 
+  
         public GameController(GameNotify notifier, GameRepository gameRepository)
         {
             Notifier = notifier;

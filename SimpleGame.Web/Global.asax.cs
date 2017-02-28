@@ -1,6 +1,17 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.SignalR;
+using Autofac.Integration.WebApi;
+using Microsoft.AspNet.SignalR;
+using SimpleGame.Common.Entities;
+using SimpleGame.Data.DataAccessLayers;
+using SimpleGame.Data.Repositories;
+using SimpleGame.Web.Hubs;
+using SimpleGame.Web.ServiceBus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,6 +29,24 @@ namespace SimpleGame.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            var builder = new ContainerBuilder();
+            builder.RegisterHubs(Assembly.GetExecutingAssembly());
+
+            builder.RegisterControllers(Assembly.GetExecutingAssembly()); //Register MVC Controllers
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
+
+            builder.RegisterType<BasicGameRepository>().As<GameRepository>();
+            builder.RegisterType<GameNotify>().SingleInstance();
+
+            builder.RegisterType<GameDAL>().As<DAL>();
+//            builder.Register(typeof(GameHub), () => new GameHub(new INotify()));
+            var container = builder.Build();
+
+            DependencyResolver.SetResolver(new Autofac.Integration.Mvc.AutofacDependencyResolver(container)); //Set the MVC DependencyResolver
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
+            GlobalHost.DependencyResolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container);
         }
     }
 }

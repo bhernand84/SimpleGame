@@ -19,7 +19,11 @@ namespace SimpleGame.Data.Repositories
         
         public Game Get(string id)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return null;
+            }
+            return dal.Get(new Guid(id));
         }
 
         public IEnumerable<Game> GetAll()
