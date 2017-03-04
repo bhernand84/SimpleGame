@@ -54,13 +54,52 @@ namespace SimpleGame.Tests.UnitTests
             var player = new BasicPlayer();
             var game = MockRepository.GenerateMock<Game>();
             game.Expect(m => m.CanJoin(player)).Return(true);
-            game.Expect(m => m.Players).Return(MockRepository.GenerateStub<PlayerContainer>());
+            var playerContainer = MockRepository.GenerateStub<PlayerContainer>();
 
+            playerContainer.Expect(m=> m.Players).Return(new List<Player>() { player });
+            game.Expect(m => m.Players).Return(playerContainer);
+            setupState.Join(game, player);
+            bool eventRaised = false;
+            setupState.OnChanged += (s, e) => { eventRaised = true; };
+            setupState.Leave(game, player);
+            Assert.IsTrue(eventRaised);
+        }
+        [TestMethod]
+        public void SetUpState_PlayerCannotLeaveGame_OnChangeDoesntFire()
+        {
+            var setupState = new SetupState();
+            var player = new BasicPlayer();
+            var game = MockRepository.GenerateMock<Game>();
+            game.Expect(m => m.CanJoin(player)).Return(true);
+            var playerContainer = MockRepository.GenerateStub<PlayerContainer>();
+
+            playerContainer.Expect(m => m.Players).Return(new List<Player>() { });
+            game.Expect(m => m.Players).Return(playerContainer);
             setupState.Join(game, player);
             bool eventRaised = false;
             setupState.OnChanged += (s, e) => { eventRaised = true; };
             setupState.Leave(game, player);
             Assert.IsFalse(eventRaised);
+        }
+        [TestMethod]
+        public void ActiveState_PlayerPlays_OnChangeFires()
+        {
+            var activeState = new ActiveState();
+            var player = new BasicPlayer();
+            activeState.PlayerOrder = new List<Player>() { new BasicPlayer(), new BasicPlayer(), player };
+            var game = MockRepository.GenerateMock<Game>();
+            game.Expect(m => m.CanPlay(player)) .Return(true);
+            var playerContainer = MockRepository.GenerateStub<PlayerContainer>();
+            var board = MockRepository.GenerateStub<Board>();
+            var space = MockRepository.GenerateStub<Space>();
+            var position = MockRepository.GenerateStub<Position>();
+            game.Expect(m => m.Board).Return(board);
+            
+            //board.Expect(m => m.Add(space, position));
+            bool eventRaised = false;
+            activeState.OnChanged += (s, e) => { eventRaised = true; };
+            activeState.Play(game, player, space, position);
+            Assert.IsTrue(eventRaised);
         }
     }
 }

@@ -39,7 +39,11 @@ namespace SimpleGame.Domain.States
 
         public override void Leave(Game game, Player player)
         {
-            game.Players.Remove(player);
+            if (game.Players.Players.Contains(player))
+            {
+                game.Players.Remove(player);
+                OnStateChanged(GameEventArgsSettings.PlayerLeftEvent);
+            }
         }
     }
 }

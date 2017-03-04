@@ -22,6 +22,7 @@ namespace SimpleGame.Common.Entities
         void Leave(Player player);
         void Play(Player player, Space space, Position position);
         bool CanJoin(Player player);
+        bool CanPlay(Player player);
         bool GameFull();
     }
 }

@@ -59,11 +59,18 @@ namespace SimpleGame.Domain.Models
         {
             return MaxSize > Players.Players.Count();
         }
+        public virtual bool CanPlay(Player player)
+        {
+            if(ActivePlayer != null)
+                return player.ID == ActivePlayer.ID;
+            return false;
+        }
 
         public virtual bool GameFull()
         {
             return MaxSize == Players.Players.Count();
         }
+
         public BasicGame(Board board, PlayerContainer playerContainer, int maxSize)
         {
             Board = board;
