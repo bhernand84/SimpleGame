@@ -1,8 +1,26 @@
 ﻿@model SimpleGame.Domain.Models.BasicGame
 
+
 @{
     ViewBag.Title = "Game";
 }
 
-<h2>Game</h2>
+<h2>Simple Game</h2>
 
+<div class="jumbotron">
+    <p>Lets Play!</p>
+</div>
+<div id="game-board">
+    <div>
+        <button type="button" id="button1" onclick="button1Clicked(event)">A</button>
+    </div>
+    <div id="button2">
+        <button type="button" id="button2" onclick="button2Clicked(event)">B</button>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/simpleGame.js"></script>
+}
