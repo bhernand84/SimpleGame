@@ -44,6 +44,7 @@
     <Compile Include="Entities\Board.cs" />
     <Compile Include="Entities\Column.cs" />
     <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\GameEventArgs.cs" />
     <Compile Include="Entities\GameRepository.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerContainer.cs" />

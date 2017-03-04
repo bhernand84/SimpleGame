@@ -42,16 +42,41 @@ namespace SimpleGame.Tests.UnitTests
         }
 
         [TestMethod]
-        public void Game_PlayerCanJoinGameInWaitingState()
+        public void Game_PlayerCanJoinGameInSetupState()
         {
+            var player = new BasicPlayer();
             var game = gameFactory.Get();
 
-            var player = new BasicPlayer();
+            Assert.IsTrue(game.CanJoin(player));
+        }
 
-            game.Join(player);
+        [TestMethod]
+        public void Game_PlayerCanJoin_ThenPlayerAddedToContainerInSetupState()
+        {
+            var setupState = new SetupState();
+            var player = new BasicPlayer();
+            var game = MockRepository.GenerateMock<BasicGame>(board, container, 4);
+
+            game.Expect(m => m.CanJoin(player)).Return(true);
+
+            setupState.Join(game, player);
 
             Assert.AreEqual(game.Players.Players.Count(), 1);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Setup_PlayerCannotJoin_ThrowsException()
+        {
+            var setupState = new SetupState();
+            var player = new BasicPlayer();
+            var game = MockRepository.GenerateMock<BasicGame>(board, container, 4);
+
+            game.Expect(m => m.CanJoin(player)).Return(false);
+
+            setupState.Join(game, player);
+        }
+
         [TestMethod]
         public void Game_PlayerCanLeaveGameInWaitingState()
         {

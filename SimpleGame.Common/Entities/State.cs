@@ -9,6 +9,7 @@ namespace SimpleGame.Common.Entities
 {
     public interface State
     {
+        event EventHandler<GameEventArgs> OnChanged;
         GameStatus Status { get; }
         string Output { get; set; }
         void Init(Game game);

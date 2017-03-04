@@ -11,7 +11,6 @@ namespace SimpleGame.Domain.Models
     [Serializable]
     public class BasicGame : Game
     {
-        public event EventHandler OnChanged;
         public Guid ID
         { get; set; }
         public Player ActivePlayer
@@ -44,7 +43,6 @@ namespace SimpleGame.Domain.Models
         public void Join(Player player)
         {
             GameState.Join(this, player);
-            OnChanged(this, new EventArgs());
         }
 
         public void Leave(Player player)
@@ -57,9 +55,14 @@ namespace SimpleGame.Domain.Models
             GameState.Play(this, player, space, position);
         }
 
-        protected virtual void Updated(EventArgs e)
+        public virtual bool CanJoin(Player player)
         {
+            return MaxSize > Players.Players.Count();
+        }
 
+        public virtual bool GameFull()
+        {
+            return MaxSize == Players.Players.Count();
         }
         public BasicGame(Board board, PlayerContainer playerContainer, int maxSize)
         {

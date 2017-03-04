@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleGame.Common.Enum;
+using SimpleGame.Domain.Settings;
 
 namespace SimpleGame.Domain.States
 {
@@ -23,11 +24,14 @@ namespace SimpleGame.Domain.States
 
         public override void Join(Game game, Player player)
         {
-            if (game.MaxSize > game.Players.Players.Count())
+            if (game.CanJoin(player))
             {
                 game.Players.Add(player);
-                if (game.MaxSize == game.Players.Players.Count())
+                OnStateChanged(GameEventArgsSettings.PlayerJoinedEvent);
+                if (game.GameFull())
+                {
                     game.SetState(new ActiveState());
+                }
             }
             else
                 throw new InvalidOperationException(Messages.GameFullMessage);
