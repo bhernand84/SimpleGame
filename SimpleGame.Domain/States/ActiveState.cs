@@ -53,7 +53,5 @@ namespace SimpleGame.Domain.States
                 throw new InvalidMoveException(Messages.PlayerInvalidNotYourTurn);
             }
         }
-
-
     }
 }

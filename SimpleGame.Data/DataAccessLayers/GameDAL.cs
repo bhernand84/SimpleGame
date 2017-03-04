@@ -13,6 +13,8 @@ using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using SimpleGame.Data.DataAccessLayers.Models;
+using SimpleGame.Common.Enum;
+using SimpleGame.Domain.Models;
 
 namespace SimpleGame.Data.DataAccessLayers
 {
@@ -52,6 +54,39 @@ namespace SimpleGame.Data.DataAccessLayers
             return game;
         }
 
+        public IEnumerable<Game> Get(GameStatus status)
+        {
+            List<Game> games = new List<Game>();
+            try
+            {
+                var table = GetGameTable();
+               TableQuery<SimpleEntity> query = new TableQuery<SimpleEntity>()
+                                                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "SimpleGame"))
+                                                .Where(TableQuery.GenerateFilterCondition("gameStatus", QueryComparisons.Equal, status.ToString()));
+
+                IEnumerable<SimpleEntity> results = table.ExecuteQuery(query);
+
+                if (results != null)
+                {
+                    foreach (var result in results)
+                    {
+                        var game = SerializationHelper.Deserialize<Game>(result.gamedata);
+                        games.Add(game);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("The Product was not found.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return games;
+        }
+
         public void Save(Game game)
         {
             string serializedGame = SerializationHelper.Serialize(game);
@@ -62,6 +97,8 @@ namespace SimpleGame.Data.DataAccessLayers
             table.CreateIfNotExists();
             SimpleEntity entity = new SimpleEntity("SimpleGame", game.ID.ToString())
             {
+                players = game.Players.Players.Count(),
+                gameStatus = game.GameStatus.ToString(),
                 gamedata = serializedGame
             };
             // Create the TableOperation object that inserts the customer entity.

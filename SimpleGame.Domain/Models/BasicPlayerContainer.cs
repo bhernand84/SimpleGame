@@ -19,6 +19,7 @@ namespace SimpleGame.Domain.Models
         {
             get { return players; }
         }
+
         public virtual void Add(Player player)
         {
             if (ValidatePlayer(player))

@@ -15,11 +15,23 @@ namespace SimpleGame.Web.Hubs
             if (!notifier.IsRegistered)
             {
                 notifier.Game += (sender, game) => { Update(game); };
+                notifier.JoinGame += (sender, game) => { JoinGame((Player)sender, game); };
             }
         }
+
         public void Update(Game game)
         {
-            Clients.All.update(game);
+            Clients.Group(game.ID.ToString()).update(game);
+        }
+        public void JoinGame(Player player, Game game)
+        {
+            Groups.Add(Context.ConnectionId, game.ID.ToString());
+            Clients.Group(game.ID.ToString());
+        }
+        
+        public void LeaveGame(string gameid)
+        {
+            Groups.Remove(Context.ConnectionId, gameid);
         }
     }
 

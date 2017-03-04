@@ -28,7 +28,7 @@ namespace SimpleGame.Data.Repositories
 
         public IEnumerable<Game> GetAll()
         {
-            throw new NotImplementedException();
+            return dal.Get(Common.Enum.GameStatus.Starting);
         }
 
         public BasicGameRepository(DAL dal)
