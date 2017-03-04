@@ -20,6 +20,11 @@ namespace SimpleGame.Web.Controllers
             return View();
         }
 
+        public ActionResult SimpleGame()
+        {
+            return View();
+        }
+
         public void FireEvent()
         {
          
@@ -33,5 +38,5 @@ namespace SimpleGame.Web.Controllers
             GameRepository = gameRepository;
         }
 
-}
+    }
 }
