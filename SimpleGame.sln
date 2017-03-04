@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame.Data", "SimpleGa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame.Domain", "SimpleGame.Domain\SimpleGame.Domain.csproj", "{B123E4A6-F130-476D-938B-1ACA49EA207C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGame.Angular", "SimpleGame.Angular\SimpleGame.Angular.csproj", "{085A3F9F-FDB4-48C0-803C-97EF44420613}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B123E4A6-F130-476D-938B-1ACA49EA207C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B123E4A6-F130-476D-938B-1ACA49EA207C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B123E4A6-F130-476D-938B-1ACA49EA207C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{085A3F9F-FDB4-48C0-803C-97EF44420613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085A3F9F-FDB4-48C0-803C-97EF44420613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085A3F9F-FDB4-48C0-803C-97EF44420613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085A3F9F-FDB4-48C0-803C-97EF44420613}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
