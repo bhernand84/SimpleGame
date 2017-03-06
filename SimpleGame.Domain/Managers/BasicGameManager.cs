@@ -27,7 +27,9 @@ namespace SimpleGame.Domain.Managers
 
         public Game Create()
         {
-           return gameFactory.Get();
+            var game= gameFactory.Get();
+            repository.Save(game);
+            return game;
         }
 
         public void Join(Player player, Game game)
@@ -46,10 +48,11 @@ namespace SimpleGame.Domain.Managers
             }
         }
 
-        public BasicGameManager(INotify notifier, GameRepository repository)
+        public BasicGameManager(INotify notifier, GameRepository repository, GameFactory gameFactory)
         {
             this.notifier = notifier;
             this.repository = repository;
+            this.gameFactory = gameFactory;
         }
     }
 }

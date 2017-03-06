@@ -23,23 +23,24 @@ namespace SimpleGame.Web.Controllers
             var games = manager.GetGames();
             return Json(games, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult JoinGame(string gameid, string playerName, string playerId)
+        public JsonResult GetGame(string gameid)
+        {
+            var game = manager.Get(gameid);
+            return Json(game, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult JoinGame(string gameid, string playerName, string playerId)
         {
             var game = manager.Get(gameid);
             var player = new BasicPlayer(playerId, playerName);
             manager.Join(player, game);
-            return RedirectToAction("Game", new { gameid = gameid });
+            return Json(game, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CreateGame(string playerName, string playerId)
+        public JsonResult CreateGame(string playerName, string playerId)
         {
             var game = manager.Create();
             return JoinGame(game.ID.ToString(), playerName, playerId);
-        }
-         
-        public ActionResult Game(string gameid)
-        {
-            return View(gameid);
         }
 
         public GameController(GameManager manager)

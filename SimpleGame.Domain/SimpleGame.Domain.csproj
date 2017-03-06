@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\BasicBoardFactory.cs" />
     <Compile Include="Factories\BasicGameFactory.cs" />
+    <Compile Include="Factories\BasicPlayerContainerFactory.cs" />
     <Compile Include="Managers\BasicGameManager.cs" />
     <Compile Include="Models\BasicBoard.cs" />
     <Compile Include="Models\BasicColumn.cs" />

@@ -4,10 +4,13 @@ using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.SignalR;
 using SimpleGame.Common.Entities;
+using SimpleGame.Common.Factories;
 using SimpleGame.Common.Models;
 using SimpleGame.Data.DataAccessLayers;
 using SimpleGame.Data.Repositories;
+using SimpleGame.Domain.Factories;
 using SimpleGame.Domain.Managers;
+using SimpleGame.Domain.Models;
 using SimpleGame.Web.Hubs;
 using SimpleGame.Web.ServiceBus;
 using System;
@@ -43,6 +46,10 @@ namespace SimpleGame.Web
             builder.RegisterType<GameNotify>().SingleInstance().As<INotify>();
             builder.RegisterType<BasicGameManager>().As<GameManager>();
             builder.RegisterType<GameDAL>().As<DAL>().WithParameter(new NamedParameter("partitionKey","SimpleGame"));
+            builder.RegisterType<BasicPlayerContainer>().As<PlayerContainer>();
+            builder.RegisterType<BasicBoardFactory>().As<BoardFactory>();
+            builder.RegisterType<BasicGameFactory>().As<GameFactory>();
+            builder.RegisterType<BasicPlayerContainerFactory>().As<PlayerContainerFactory>();
 //            builder.Register(typeof(GameHub), () => new GameHub(new INotify()));
             var container = builder.Build();
 
