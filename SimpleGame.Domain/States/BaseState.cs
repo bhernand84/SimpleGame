@@ -12,7 +12,7 @@ namespace SimpleGame.Domain.States
 {
     public abstract class BaseState : State
     {
-        public event EventHandler<GameEventArgs> OnChanged;
+        public virtual event EventHandler<GameEventArgs> OnChanged;
 
         public virtual GameStatus Status
         {

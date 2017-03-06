@@ -23,6 +23,7 @@ namespace SimpleGame.Domain.Factories
         public Game Get(int maxsize)
         {
             var game = new BasicGame(boardFactory.Get(), playerContainerFactory.Get(), maxsize);
+            game.ID = Guid.NewGuid();
             game.SetState(new SetupState());
             return game;
         }

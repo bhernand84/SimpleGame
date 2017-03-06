@@ -5,12 +5,13 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using SimpleGame.Common.Entities;
 using SimpleGame.Web.ServiceBus;
+using SimpleGame.Common.Models;
 
 namespace SimpleGame.Web.Hubs
 {
     public class GameHub : Hub<IGameHub>
     {
-        public GameHub(GameNotify notifier)
+        public GameHub(INotify notifier)
         {
             if (!notifier.IsRegistered)
             {

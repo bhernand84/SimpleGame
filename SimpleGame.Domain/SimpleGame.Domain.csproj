@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\BasicGameFactory.cs" />
+    <Compile Include="Managers\BasicGameManager.cs" />
     <Compile Include="Models\BasicBoard.cs" />
     <Compile Include="Models\BasicColumn.cs" />
     <Compile Include="Models\BasicGame.cs" />

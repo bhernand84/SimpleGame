@@ -1,4 +1,5 @@
 ﻿using SimpleGame.Common.Entities;
+using SimpleGame.Common.Models;
 using SimpleGame.Web.ServiceBus;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace SimpleGame.Web.Controllers
 {
     public class TestController : Controller
     {
-        protected GameNotify Notifier;
+        protected INotify Notifier;
         protected GameRepository GameRepository;
 
         // GET: Test
@@ -32,7 +33,7 @@ namespace SimpleGame.Web.Controllers
             Notifier.Update(game);
         }
 
-        public TestController (GameNotify notifier, GameRepository gameRepository)
+        public TestController (INotify notifier, GameRepository gameRepository)
         {
             Notifier = notifier;
             GameRepository = gameRepository;

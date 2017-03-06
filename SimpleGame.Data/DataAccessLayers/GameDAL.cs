@@ -20,6 +20,8 @@ namespace SimpleGame.Data.DataAccessLayers
 {
     public class GameDAL : DAL
     {
+        protected string partitionKey;
+
         public IEnumerable<Game> Get()
         {
             throw new NotImplementedException();
@@ -31,7 +33,7 @@ namespace SimpleGame.Data.DataAccessLayers
             try
             {
                 var table = GetGameTable();
-                TableOperation retrieveOperation = TableOperation.Retrieve<SimpleEntity>("SimpleGame",gameId.ToString());
+                TableOperation retrieveOperation = TableOperation.Retrieve<SimpleEntity>(partitionKey,gameId.ToString());
 
                 TableResult query = table.Execute(retrieveOperation);
 
@@ -61,7 +63,7 @@ namespace SimpleGame.Data.DataAccessLayers
             {
                 var table = GetGameTable();
                TableQuery<SimpleEntity> query = new TableQuery<SimpleEntity>()
-                                                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "SimpleGame"))
+                                                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, partitionKey))
                                                 .Where(TableQuery.GenerateFilterCondition("gameStatus", QueryComparisons.Equal, status.ToString()));
 
                 IEnumerable<SimpleEntity> results = table.ExecuteQuery(query);
@@ -76,7 +78,7 @@ namespace SimpleGame.Data.DataAccessLayers
                 }
                 else
                 {
-                    Console.WriteLine("The Product was not found.");
+                    Console.WriteLine("The Gane was not found.");
                 }
 
             }
@@ -95,7 +97,7 @@ namespace SimpleGame.Data.DataAccessLayers
 
             // Create the table if it doesn't exist.
             table.CreateIfNotExists();
-            SimpleEntity entity = new SimpleEntity("SimpleGame", game.ID.ToString())
+            SimpleEntity entity = new SimpleEntity(partitionKey, game.ID.ToString())
             {
                 players = game.Players.Players.Count(),
                 gameStatus = game.GameStatus.ToString(),
@@ -108,6 +110,7 @@ namespace SimpleGame.Data.DataAccessLayers
             table.Execute(insertOperation);
         }
         
+
         protected CloudTable GetGameTable()
         {
             // Parse the connection string and return a reference to the storage account.
@@ -119,6 +122,11 @@ namespace SimpleGame.Data.DataAccessLayers
             // Retrieve a reference to the table.
             CloudTable table = tableClient.GetTableReference("games");
             return table;
+        }
+
+        public GameDAL(string partitionKey)
+        {
+            this.partitionKey = partitionKey;
         }
     }
 }

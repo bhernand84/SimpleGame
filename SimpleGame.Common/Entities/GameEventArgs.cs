@@ -8,11 +8,14 @@ namespace SimpleGame.Common.Entities
 {
     public class GameEventArgs : EventArgs 
     {
+        public Player Player
+        { get; set; }
         public string Message
         { get; set; }
 
-        public GameEventArgs(string message)
+        public GameEventArgs(Player player, string message)
         {
+            Player = player;
             Message = message;
         }
     }

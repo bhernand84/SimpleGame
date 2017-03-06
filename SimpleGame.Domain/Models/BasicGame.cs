@@ -11,6 +11,7 @@ namespace SimpleGame.Domain.Models
     [Serializable]
     public class BasicGame : Game
     {
+        public virtual event EventHandler<GameEventArgs> OnChanged; 
         public Guid ID
         { get; set; }
         public Player ActivePlayer
@@ -38,6 +39,7 @@ namespace SimpleGame.Domain.Models
         public void SetState(State state)
         {
             this.GameState = state;
+            state.OnChanged += (s,e) => { OnChanged?.Invoke(s, e); };
             this.GameState.Init(this);
         }
         public void Join(Player player)

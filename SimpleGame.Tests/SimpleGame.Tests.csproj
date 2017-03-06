@@ -65,6 +65,7 @@
     <Compile Include="UnitTests\GameTests.cs" />
     <Compile Include="UnitTests\PersistenceTests.cs" />
     <Compile Include="UnitTests\StateTests.cs" />
+    <Compile Include="UnitTests\GameManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleGame.Common\SimpleGame.Common.csproj">

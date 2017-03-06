@@ -27,7 +27,7 @@ namespace SimpleGame.Domain.States
             if (game.CanJoin(player))
             {
                 game.Players.Add(player);
-                OnStateChanged(GameEventArgsSettings.PlayerJoinedEvent);
+                OnStateChanged(new GameEventArgs(player, GameEventArgsSettings.PlayerJoinedEvent));
                 if (game.GameFull())
                 {
                     game.SetState(new ActiveState());
@@ -42,7 +42,7 @@ namespace SimpleGame.Domain.States
             if (game.Players.Players.Contains(player))
             {
                 game.Players.Remove(player);
-                OnStateChanged(GameEventArgsSettings.PlayerLeftEvent);
+                OnStateChanged(new GameEventArgs(player, GameEventArgsSettings.PlayerLeftEvent));
             }
         }
     }

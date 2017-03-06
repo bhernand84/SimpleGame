@@ -15,5 +15,12 @@ namespace SimpleGame.Domain.Models
 
         public string Name
         { get; set; }
+
+        public BasicPlayer() { }
+        public BasicPlayer(string id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
     }
 }

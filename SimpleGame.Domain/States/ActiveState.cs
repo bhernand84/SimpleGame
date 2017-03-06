@@ -34,7 +34,7 @@ namespace SimpleGame.Domain.States
             if (game.CanPlay(player))
             {
                 game.Board.Add(space, position);
-                OnStateChanged(GameEventArgsSettings.PlayerPlayEvent);
+                OnStateChanged(new GameEventArgs(player, GameEventArgsSettings.PlayerPlayEvent));
                 SetActivePlayer(game);
             }
             else

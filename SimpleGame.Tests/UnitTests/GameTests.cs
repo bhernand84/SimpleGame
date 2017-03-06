@@ -5,6 +5,7 @@ using SimpleGame.Domain.Factories;
 using SimpleGame.Common.Factories;
 using Rhino.Mocks;
 using SimpleGame.Common.Entities;
+using SimpleGame.Domain.States;
 
 namespace SimpleGame.Tests.UnitTests
 {
@@ -60,6 +61,21 @@ namespace SimpleGame.Tests.UnitTests
             game.Leave(player);
 
             state.VerifyAllExpectations();
+        }
+
+        [TestMethod]
+        public void Game_StateChangeEvent_FiresGameChangeEvent()
+        {
+            var state = MockRepository.GenerateMock<SetupState>();
+            var game =new BasicGame( MockRepository.GenerateMock<Board>(), MockRepository.GenerateMock<PlayerContainer>(),5);
+            game.SetState(state);
+
+            bool eventRaised = false;
+            game.OnChanged += (s, e) => { eventRaised = true; };
+            state.Raise<State>(m => m.OnChanged += null,
+                game,
+               new GameEventArgs(null, "test"));
+            Assert.IsTrue(eventRaised);
         }
     }
 }

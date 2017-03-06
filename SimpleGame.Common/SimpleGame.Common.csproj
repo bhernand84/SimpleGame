@@ -45,7 +45,9 @@
     <Compile Include="Entities\Column.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\GameEventArgs.cs" />
+    <Compile Include="Entities\GameManager.cs" />
     <Compile Include="Entities\GameRepository.cs" />
+    <Compile Include="Entities\INotify.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerContainer.cs" />
     <Compile Include="Entities\Position.cs" />

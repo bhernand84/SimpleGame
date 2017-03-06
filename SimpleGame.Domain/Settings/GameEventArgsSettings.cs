@@ -9,10 +9,8 @@ namespace SimpleGame.Domain.Settings
 {
     public static class GameEventArgsSettings
     {
-        public static GameEventArgs PlayerJoinedEvent = new GameEventArgs("A player has joined");
-
-        public static GameEventArgs PlayerLeftEvent = new GameEventArgs("A player has left");
-
-        public static GameEventArgs PlayerPlayEvent = new GameEventArgs("A player has played");
+        public const string  PlayerJoinedEvent = "A player has joined";
+        public const string PlayerLeftEvent = "A player has left";
+        public const string PlayerPlayEvent = "A player has played";
     }
 }

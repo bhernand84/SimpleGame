@@ -9,6 +9,7 @@ namespace SimpleGame.Common.Entities
 {
     public interface Game
     {
+        event EventHandler<GameEventArgs> OnChanged;
         Guid ID { get; }
         Board Board { get; }
         PlayerContainer Players { get; }

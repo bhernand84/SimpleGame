@@ -9,32 +9,31 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SimpleGame.Common.Factories;
+using SimpleGame.Common.Models;
+using SimpleGame.Domain.Models;
 
 namespace SimpleGame.Web.Controllers
 {
     public class GameController : Controller
     {
-        protected GameNotify Notifier;
-        protected GameRepository GameRepository;
-        protected GameFactory GameFactory;
+        protected GameManager manager;
 
         public JsonResult GetGames()
         {
-            var games = GameRepository.GetAll();
+            var games = manager.GetGames();
             return Json(games, JsonRequestBehavior.AllowGet);
         }
         public ActionResult JoinGame(string gameid, string playerName, string playerId)
         {
-            var game = GameRepository.Get(gameid);
-            var player = new Domain.Models.BasicPlayer() { ID = playerId, Name = playerName };
-            game.Join(player);
-            Notifier.Join(game, player);
+            var game = manager.Get(gameid);
+            var player = new BasicPlayer(playerId, playerName);
+            manager.Join(player, game);
             return RedirectToAction("Game", new { gameid = gameid });
         }
 
         public ActionResult CreateGame(string playerName, string playerId)
         {
-            var game = GameFactory.Get();
+            var game = manager.Create();
             return JoinGame(game.ID.ToString(), playerName, playerId);
         }
          
@@ -43,10 +42,9 @@ namespace SimpleGame.Web.Controllers
             return View(gameid);
         }
 
-        public GameController(GameNotify notifier, GameRepository gameRepository)
+        public GameController(GameManager manager)
         {
-            Notifier = notifier;
-            GameRepository = gameRepository;
+            this.manager = manager;
         }
     }
 }

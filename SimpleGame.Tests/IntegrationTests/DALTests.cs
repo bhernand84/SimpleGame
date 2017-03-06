@@ -42,11 +42,24 @@ namespace SimpleGame.Tests.IntegrationTests
         {
             var basicGame = gameFactory.Get();
 
-            var dal = new GameDAL();
+            var dal = new GameDAL("TestGames");
             dal.Save(basicGame);
 
             var retrievedGame = dal.Get(basicGame.ID);
             Assert.AreEqual(retrievedGame.ID, basicGame.ID);
+        }
+
+        [TestMethod]
+        public void NewGameAdded_GeneratesId()
+        {
+            var basicGame = gameFactory.Get();
+            var id = basicGame.ID;
+
+            var dal = new GameDAL("TestGames");
+            dal.Save(basicGame);
+
+            var retrievedGame = dal.Get(basicGame.ID);
+            Assert.AreNotEqual(retrievedGame.ID, Guid.Empty);
         }
     }
 }
